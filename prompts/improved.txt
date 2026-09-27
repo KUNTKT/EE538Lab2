@@ -1,0 +1,11 @@
+Write a complete C++17 program for recursive Strassen matrix multiplication.
+
+[Replace this line with the command-line and TXT input/output requirements
+from benchmark/spec.txt. Be explicit about filenames and output layout.]
+
+[Specify seven recursive products, the scalar base case, numeric type,
+and the valid input sizes. Keep the implementation simple.]
+
+[Add the small input/output example from tests/provided/sample.*.txt.]
+
+Return only complete C++17 source code, including main() and required includes.

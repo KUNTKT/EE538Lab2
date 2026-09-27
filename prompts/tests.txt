@@ -1,0 +1,12 @@
+Design two test cases for a C++ Strassen matrix multiplication program.
+Use n = 4 for the first case and n = 8 for the second, with entries in [-9, 9].
+
+[Replace this line with two distinct testing goals and explain the kinds of
+bugs to target, such as swapped operands, sign errors, or block placement.]
+
+For each case, provide a name, a short explanation, an input TXT block,
+and a separate claimed output TXT block. Calculate C = A * B.
+Input: n on the first line, then n rows of A, then n rows of B.
+Output: n rows of C only, without a dimension line.
+Do not put labels or brackets inside either data block.
+Use small, structured matrices so that a person can check part of the result.

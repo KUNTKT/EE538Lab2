@@ -1,0 +1,2 @@
+# Install in .venv-vllm so vLLM can select compatible PyTorch dependencies.
+vllm>=0.8.5

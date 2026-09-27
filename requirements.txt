@@ -1,0 +1,4 @@
+# Same core inference dependencies as the Verilog starter.
+torch
+transformers>=4.51.0
+accelerate>=0.33.0

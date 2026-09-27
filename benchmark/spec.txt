@@ -1,0 +1,15 @@
+Write a complete C++17 program, including main(), for C = A * B.
+Use recursive Strassen multiplication with seven products at each non-base call.
+At n = 1, multiply the two scalar values. Use long long for matrix arithmetic.
+
+Invocation: ./matrix input.txt output.txt
+Read the input filename from argv[1] and the output filename from argv[2].
+Use file streams. Do not hard-code filenames or use console input.
+Input TXT: the first line contains n, followed by n rows of A, then n rows of B.
+Each matrix row contains n space-separated integers.
+Output TXT: exactly n rows of C, with n space-separated integers per row.
+Do not write n, labels, brackets, explanations, or prompts to the output file.
+
+Assume valid inputs: n is 1, 2, 4, or 8 and entries are in [-9, 9].
+No padding, input validation, or additional boundary handling is needed.
+Return only the complete C++17 source code with standard library includes.

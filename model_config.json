@@ -1,0 +1,15 @@
+{
+  "models": {
+    "qwen7b": "Qwen/Qwen2.5-Coder-7B-Instruct",
+    "qwen3_4b": "Qwen/Qwen3-4B-Instruct-2507"
+  },
+  "generation": {
+    "max_new_tokens": 4096,
+    "temperature": 0.0,
+    "dtype": "float16"
+  },
+  "vllm": {
+    "max_model_len": 8192,
+    "gpu_memory_utilization": 0.85
+  }
+}
