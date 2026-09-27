@@ -1,0 +1,16 @@
+generated/hf/qwen7b/basic.cpp: In function ‘std::vector<std::vector<int> > strassenMultiply(const std::vector<std::vector<int> >&, const std::vector<std::vector<int> >&)’:
+generated/hf/qwen7b/basic.cpp:33:57: error: ‘add’ was not declared in this scope
+     std::vector<std::vector<int>> P1 = strassenMultiply(add(A11, A22), add(B11, B22));
+                                                         ^~~
+generated/hf/qwen7b/basic.cpp:33:57: note: suggested alternative: ‘rand’
+     std::vector<std::vector<int>> P1 = strassenMultiply(add(A11, A22), add(B11, B22));
+                                                         ^~~
+                                                         rand
+generated/hf/qwen7b/basic.cpp:35:62: error: ‘subtract’ was not declared in this scope
+     std::vector<std::vector<int>> P3 = strassenMultiply(A11, subtract(B12, B22));
+                                                              ^~~~~~~~
+generated/hf/qwen7b/basic.cpp:35:62: note: suggested alternative: ‘struct’
+     std::vector<std::vector<int>> P3 = strassenMultiply(A11, subtract(B12, B22));
+                                                              ^~~~~~~~
+                                                              struct
+Compilation failed; tests were not run.

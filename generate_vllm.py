@@ -8,11 +8,22 @@ from generation_utils import save_response, save_settings
 
 
 def generate(model_id, config, prompt):
+    settings = config['generation']
     # TODO 1: Construct LLM with model_id, configured dtype and vllm settings.
+    llm = LLM(model=model_id, dtype=settings['dtype'],
+              max_model_len=config['vllm']['max_model_len'],
+              gpu_memory_utilization=config['vllm']['gpu_memory_utilization'])
     # TODO 2: Get its tokenizer and apply the chat template to one user message.
+    tokenizer = llm.get_tokenizer()
+    messages = [{'role': 'user', 'content': prompt}]
+    text = tokenizer.apply_chat_template(
+        messages, tokenize=False, add_generation_prompt=True)
     # TODO 3: Build SamplingParams with temperature and max_tokens from config.
+    sampling = SamplingParams(temperature=settings['temperature'],
+                              max_tokens=settings['max_new_tokens'])
     # TODO 4: Call llm.generate and return outputs[0].outputs[0].text.
-    raise NotImplementedError('Complete the four steps above.')
+    outputs = llm.generate([text], sampling)
+    return outputs[0].outputs[0].text
 
 
 def main():

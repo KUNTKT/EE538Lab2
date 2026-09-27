@@ -1,0 +1,8 @@
+generated/hf/qwen7b/improved.cpp: In function ‘std::vector<std::vector<long long int> > strassen(const std::vector<std::vector<long long int> >&, const std::vector<std::vector<long long int> >&)’:
+generated/hf/qwen7b/improved.cpp:31:55: error: ‘addMatrices’ was not declared in this scope
+     std::vector<std::vector<long long>> M1 = strassen(addMatrices(A11, A22), addMatrices(B11, B22));
+                                                       ^~~~~~~~~~~
+generated/hf/qwen7b/improved.cpp:33:60: error: ‘subtractMatrices’ was not declared in this scope
+     std::vector<std::vector<long long>> M3 = strassen(A11, subtractMatrices(B12, B22));
+                                                            ^~~~~~~~~~~~~~~~
+Compilation failed; tests were not run.

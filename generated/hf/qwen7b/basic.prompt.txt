@@ -1,0 +1,2 @@
+Write a complete C++17 program that multiplies two square integer matrices
+using Strassen's algorithm. Return only the source code.

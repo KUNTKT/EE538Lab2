@@ -1,0 +1,8 @@
+.venv/
+.venv-vllm/
+__pycache__/
+setup_*.log
+# compiled executables produced by evaluate.py
+generated/**/basic
+generated/**/improved
+generated/manual_fix/qwen7b_improved_fixed

@@ -1,0 +1,6 @@
+provided/identity4.input.txt: PASS (exit=0)
+provided/sample.input.txt: PASS (exit=0)
+provided/scalar.input.txt: PASS (exit=0)
+student/case1.input.txt: PASS (exit=0)
+student/case2.input.txt: PASS (exit=0)
+5/5 tests passed

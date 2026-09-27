@@ -1,0 +1,38 @@
+generated/hf/qwen3_4b/basic.cpp: In static member function ‘static Matrix StrassenMatrix::multiply(const Matrix&, const Matrix&)’:
+generated/hf/qwen3_4b/basic.cpp:95:50: error: no match for ‘operator+’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p1 = StrassenMatrix::multiply(a11 + a22, b11 + b22);
+                                              ~~~~^~~~~
+generated/hf/qwen3_4b/basic.cpp:95:61: error: no match for ‘operator+’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p1 = StrassenMatrix::multiply(a11 + a22, b11 + b22);
+                                                         ~~~~^~~~~
+generated/hf/qwen3_4b/basic.cpp:96:50: error: no match for ‘operator+’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p2 = StrassenMatrix::multiply(a12 + a21, b11 + b12);
+                                              ~~~~^~~~~
+generated/hf/qwen3_4b/basic.cpp:96:61: error: no match for ‘operator+’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p2 = StrassenMatrix::multiply(a12 + a21, b11 + b12);
+                                                         ~~~~^~~~~
+generated/hf/qwen3_4b/basic.cpp:97:55: error: no match for ‘operator-’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p3 = StrassenMatrix::multiply(a11, b22 - b12);
+                                                   ~~~~^~~~~
+generated/hf/qwen3_4b/basic.cpp:98:55: error: no match for ‘operator-’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p4 = StrassenMatrix::multiply(a22, b11 - b21);
+                                                   ~~~~^~~~~
+generated/hf/qwen3_4b/basic.cpp:99:50: error: no match for ‘operator+’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p5 = StrassenMatrix::multiply(a11 + a12, b21 - b11);
+                                              ~~~~^~~~~
+generated/hf/qwen3_4b/basic.cpp:99:61: error: no match for ‘operator-’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p5 = StrassenMatrix::multiply(a11 + a12, b21 - b11);
+                                                         ~~~~^~~~~
+generated/hf/qwen3_4b/basic.cpp:100:50: error: no match for ‘operator-’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p6 = StrassenMatrix::multiply(a21 - a11, b12 + b22);
+                                              ~~~~^~~~~
+generated/hf/qwen3_4b/basic.cpp:100:61: error: no match for ‘operator+’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p6 = StrassenMatrix::multiply(a21 - a11, b12 + b22);
+                                                         ~~~~^~~~~
+generated/hf/qwen3_4b/basic.cpp:101:50: error: no match for ‘operator-’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p7 = StrassenMatrix::multiply(a22 - a21, b11 + b22);
+                                              ~~~~^~~~~
+generated/hf/qwen3_4b/basic.cpp:101:61: error: no match for ‘operator+’ (operand types are ‘Matrix’ and ‘Matrix’)
+         Matrix p7 = StrassenMatrix::multiply(a22 - a21, b11 + b22);
+                                                         ~~~~^~~~~
+Compilation failed; tests were not run.

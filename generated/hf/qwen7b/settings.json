@@ -1,0 +1,13 @@
+{
+  "model_id": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "backend": "hf",
+  "versions": {
+    "torch": "2.14.0+cu130",
+    "transformers": "5.17.0"
+  },
+  "generation": {
+    "max_new_tokens": 4096,
+    "temperature": 0.0,
+    "dtype": "float16"
+  }
+}

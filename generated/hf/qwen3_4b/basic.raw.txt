@@ -1,0 +1,160 @@
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <stdexcept>
+
+class Matrix {
+public:
+    std::vector<std::vector<int>> data;
+    int size;
+
+    Matrix(int n) : size(n) {
+        data = std::vector<std::vector<int>>(n, std::vector<int>(n, 0));
+    }
+
+    Matrix(int n, const std::vector<std::vector<int>>& init_data) : size(n) {
+        if (init_data.size() != n || init_data[0].size() != n) {
+            throw std::invalid_argument("Matrix dimensions mismatch");
+        }
+        data = init_data;
+    }
+
+    int get(int i, int j) const {
+        if (i < 0 || i >= size || j < 0 || j >= size) {
+            throw std::out_of_range("Index out of bounds");
+        }
+        return data[i][j];
+    }
+
+    void set(int i, int j, int value) {
+        if (i < 0 || i >= size || j < 0 || j >= size) {
+            throw std::out_of_range("Index out of bounds");
+        }
+        data[i][j] = value;
+    }
+
+    Matrix operator*(const Matrix& other) const {
+        if (size != other.size) {
+            throw std::invalid_argument("Matrix dimensions don't match for multiplication");
+        }
+
+        Matrix result(size);
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                for (int k = 0; k < size; ++k) {
+                    result.set(i, j, result.get(i, j) + get(i, k) * other.get(k, j));
+                }
+            }
+        }
+        return result;
+    }
+
+    void print() const {
+        for (const auto& row : data) {
+            for (int val : row) {
+                std::cout << val << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+};
+
+class StrassenMatrix {
+public:
+    static Matrix multiply(const Matrix& a, const Matrix& b) {
+        if (a.size == 1) {
+            return Matrix(1, {{a.get(0, 0) * b.get(0, 0)}});
+        }
+
+        if (a.size == 2) {
+            // For 2x2 matrices, use direct multiplication
+            Matrix result(2);
+            result.set(0, 0, a.get(0, 0) * b.get(0, 0) + a.get(0, 1) * b.get(1, 0));
+            result.set(0, 1, a.get(0, 0) * b.get(0, 1) + a.get(0, 1) * b.get(1, 1));
+            result.set(1, 0, a.get(1, 0) * b.get(0, 0) + a.get(1, 1) * b.get(1, 0));
+            result.set(1, 1, a.get(1, 0) * b.get(0, 1) + a.get(1, 1) * b.get(1, 1));
+            return result;
+        }
+
+        // For larger matrices, use Strassen's algorithm
+        int n = a.size;
+        int half = n / 2;
+
+        // Divide matrices into four quadrants
+        Matrix a11(half, {{a.get(0, 0), a.get(0, 1)}, {a.get(1, 0), a.get(1, 1)}}); // top-left
+        Matrix a12(half, {{a.get(0, half), a.get(0, half + 1)}, {a.get(1, half), a.get(1, half + 1)}}); // top-right
+        Matrix a21(half, {{a.get(half, 0), a.get(half, 1)}, {a.get(half + 1, 0), a.get(half + 1, 1)}}); // bottom-left
+        Matrix a22(half, {{a.get(half, half), a.get(half, half + 1)}, {a.get(half + 1, half), a.get(half + 1, half + 1)}}); // bottom-right
+
+        Matrix b11(half, {{b.get(0, 0), b.get(0, 1)}, {b.get(1, 0), b.get(1, 1)}}); // top-left
+        Matrix b12(half, {{b.get(0, half), b.get(0, half + 1)}, {b.get(1, half), b.get(1, half + 1)}}); // top-right
+        Matrix b21(half, {{b.get(half, 0), b.get(half, 1)}, {b.get(half + 1, 0), b.get(half + 1, 1)}}); // bottom-left
+        Matrix b22(half, {{b.get(half, half), b.get(half, half + 1)}, {b.get(half + 1, half), b.get(half + 1, half + 1)}}); // bottom-right
+
+        // Compute the seven products
+        Matrix p1 = StrassenMatrix::multiply(a11 + a22, b11 + b22);
+        Matrix p2 = StrassenMatrix::multiply(a12 + a21, b11 + b12);
+        Matrix p3 = StrassenMatrix::multiply(a11, b22 - b12);
+        Matrix p4 = StrassenMatrix::multiply(a22, b11 - b21);
+        Matrix p5 = StrassenMatrix::multiply(a11 + a12, b21 - b11);
+        Matrix p6 = StrassenMatrix::multiply(a21 - a11, b12 + b22);
+        Matrix p7 = StrassenMatrix::multiply(a22 - a21, b11 + b22);
+
+        // Combine results
+        Matrix result(n);
+        
+        // Top-left quadrant
+        result.set(0, 0, p1.get(0, 0) + p2.get(0, 0) + p3.get(0, 0) + p4.get(0, 0));
+        
+        // Top-right quadrant
+        result.set(0, half, p1.get(0, 0) + p5.get(0, 0) + p6.get(0, 0));
+        
+        // Bottom-left quadrant
+        result.set(half, 0, p2.get(0, 0) + p4.get(0, 0) + p7.get(0, 0));
+        
+        // Bottom-right quadrant
+        result.set(half, half, p3.get(0, 0) + p5.get(0, 0) + p6.get(0, 0) + p7.get(0, 0));
+
+        return result;
+    }
+};
+
+int main() {
+    try {
+        // Example: 4x4 matrices
+        std::vector<std::vector<int>> a_data = {
+            {2, 3, 1, 4},
+            {1, 0, 2, 3},
+            {4, 2, 1, 0},
+            {3, 1, 2, 1}
+        };
+
+        std::vector<std::vector<int>> b_data = {
+            {1, 2, 3, 0},
+            {4, 1, 0, 2},
+            {2, 3, 1, 4},
+            {0, 1, 2, 3}
+        };
+
+        Matrix a(4, a_data);
+        Matrix b(4, b_data);
+
+        std::cout << "Matrix A:\n";
+        a.print();
+
+        std::cout << "\nMatrix B:\n";
+        b.print();
+
+        std::cout << "\nResult of A * B using Strassen's algorithm:\n";
+        Matrix result = StrassenMatrix::multiply(a, b);
+        result.print();
+
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
+
+    return 0;
+}
+```
